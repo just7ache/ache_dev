@@ -8,24 +8,54 @@ namespace stack
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Stack<int> stack = new Stack<int>(3); //создаем стек с начальной емкостью на 3 элемента
-            Console.WriteLine($"Количество элементов коллекции {stack.Count}");
-            //добавляем новые элементы в стек
-            stack.Push(1);
-            stack.Push(2);
-            stack.Push(3);
-            stack.Push(4);//на этом шаге емкость хранилища будет увеличена
-            stack.Push(5);
-            while (stack.Count > 0)
-            {
-                if (stack.Peek() == 3)
-                {
-                    Console.WriteLine($"Нашли в стеке значение 3. Всего элементов {stack.Count}");
-                }
-                Console.WriteLine($"Извлекли из стека значение {stack.Pop()}. Всего элементов {stack.Count}");
-            }
+            Console.WriteLine("------------------------------------");
+
+            Console.WriteLine("Просто элементы в статичном стеке:");
+            var employees = new List<string> { "Tom", "Sam", "Bob" };
+            Stack<string> people = new Stack<string>(employees);
+            foreach (var person in people) Console.WriteLine(person);
+
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("Кол-во элементов в статичном стеке:");
+
+            Console.WriteLine(people.Count);
+
+            Console.WriteLine("------------------------------------");
+
+            var people0 = new Stack<string>();
+            people0.Push("Tom");
+            // people = { Tom }
+            people0.Push("Sam");
+            // people = { Sam, Tom }
+            people0.Push("Bob");
+            // people = { Bob, Sam, Tom }
+
+            Console.WriteLine("Первый элемент динамического стека:");
+
+            // получаем первый элемент стека без его удаления 
+            string headPerson = people0.Peek();
+            Console.WriteLine(headPerson);  // Bob
+
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("Просто элементы динамического стека:");
+
+            string person1 = people0.Pop();
+            // people = { Sam, Tom }
+            Console.WriteLine(person1);  // Bob
+
+            string person2 = people0.Pop();
+            // people = { Tom }
+            Console.WriteLine(person2);  // Sam
+
+            string person3 = people0.Pop();
+            // people = { }
+            Console.WriteLine(person3);  // Tom
+
+            Console.WriteLine("------------------------------------");
+
+            Console.ReadLine();
         }
     }
 }
